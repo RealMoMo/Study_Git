@@ -1,0 +1,12 @@
+vim vim.txt   创建vim.txt 并进入该文件编辑
+
+后面的命令均有一个冒号！
+" : "
+
+常用命令：
+
+:w 保存
+:q 退出vim编辑
+ZZ  |  :wq  | :x 保存退出
+:w filename 另存为
+
