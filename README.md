@@ -9,10 +9,12 @@ git commit -m"your commit info"
 git status
 git push
 
-git diff    
-git diff +file
-git diff --cached 
-git diff --staged
+  
+git diff [+file]    工作区与暂存区比较   
+git diff --cached [+file]  git diff --staged [+file]	暂存区与HEAD比较
+git diff HEAD [+file]    工作区与HEAD ( 当前工作分支) 比较
+git diff branchName [+file]   当前分支的文件与branchName 分支的文件进行比较
+git diff commitId [+file]     与某一次提交进行比较
 
 
 git commit -a   == git add -A + git commit
