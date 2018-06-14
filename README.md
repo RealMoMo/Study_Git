@@ -1,18 +1,19 @@
 git init
 
------------------
+==============================
+
 git remote add origin https://github.com/RealMoMo/Study_Git.git  
 git pull origin master
 git push origin master
 
-------------------
+===============================
 
 git add
 git commit -m"your commit info"
 git status
 git push
 
- -----------------
+===============================
  
 git diff [+file]    工作区与暂存区比较   
 git diff --cached [+file]  git diff --staged [+file]	暂存区与HEAD比较
@@ -20,15 +21,16 @@ git diff HEAD [+file]    工作区与HEAD ( 当前工作分支) 比较
 git diff branchName [+file]   当前分支的文件与branchName 分支的文件进行比较
 git diff commitId [+file]     与某一次提交进行比较
 
-------------------
+=============================
 
 git commit -a   == git add -A + git commit
 
-------------------
+============================
 
 git rm +file
 
-------------------
+==========================
+
 git mv file_from file_to  -> git mv test.txt test1.txt
 
 其实，运行 git mv 就相当于运行了下面三条命令：
@@ -37,7 +39,9 @@ $ mv README.txt README
 $ git rm README.txt
 $ git add README
 
--------------------
+=================================
+
+查看提交历史记录
 
 git log
 git log -2 仅显示最近的两次更新
@@ -78,7 +82,27 @@ git log --since=2.weeks
 $ git log --pretty="%h - %s" --author=gitster --since="2008-10-01" \
    --before="2008-11-01" --no-merges -- t/
    
+===================================
+
+撤销操作
    
+--amend  (修改最后一次提交)
+
+git commit --amend --no-edit	标记会修复提交但不修改提交信息
+git commit --amend 				标记会修复提交并进入vim修改提交信息   (退出vim需要先按 ESC，再打 :wq，Enter)
+
+
+----------------------------------
+
+git reset HARD   +file (取消已经暂存的文件,也就是取消已经git add的文件回到not staged)
+
+git checkout -- +file	(取消对文件的修改回到之前的状态,也就是修改之前的版本)
+
+===================================
+
+
+
+
 
 
 
