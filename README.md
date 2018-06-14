@@ -100,7 +100,54 @@ git checkout -- +file	(取消对文件的修改回到之前的状态,也就是修改之前的版本)
 
 ===================================
 
+远程仓库的使用
 
+git remote  (它会列出每个远程库的简短名字)
+例子:
+$ git remote 
+origin
+
+git remote -v  (译注：此为 --verbose 的简写，取首字母，显示对应的克隆地址)
+例子:
+$ git remote -v  
+origin  https://github.com/RealMoMo/Study_Git.git (fetch)
+origin  https://github.com/RealMoMo/Study_Git.git (push)
+
+---------------------
+
+添加远程仓库
+
+git remote add [shortname] [url]
+例子:
+$git remote add pb https://github.com/RealMoMo/Practice_Git.git
+$ git remote -v
+origin  https://github.com/RealMoMo/Study_Git.git (fetch)
+origin  https://github.com/RealMoMo/Study_Git.git (push)
+pb      https://github.com/RealMoMo/Practice_Git.git (fetch)
+pb      https://github.com/RealMoMo/Practice_Git.git (push)
+用字符串 pb 指代对应的仓库地址了。
+
+-----------------------
+
+从远程仓库抓取数据
+
+git fetch [remote-name]
+
+推送数据到远程仓库
+
+git push [remote-name] [branch-name]
+
+查看远程仓库信息
+
+git remote show [remote-name]
+
+远程仓库的删除和重命名
+
+git remote rename [old_name] [new_name]
+
+git remote rm [remote-name]
+
+================================
 
 
 
