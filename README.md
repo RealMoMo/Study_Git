@@ -235,8 +235,24 @@ git push origin --tags
 
 ===========================
 
+Git命令别名
 
+git config 为命令设置别名
 
+例子:
+$ git config --global alias.co checkout
+$ git config --global alias.br branch
+$ git config --global alias.ci commit
+$ git config --global alias.st status
+
+还可以创造出新的命令
+$ git config --global alias.last “log -1 HEAD”
+
+git last  (查看最后一次提交信息)
+
+git config --list or -l (查看当前所有配置)
+
+============================
 
 
 
