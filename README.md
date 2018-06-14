@@ -133,13 +133,19 @@ pb      https://github.com/RealMoMo/Practice_Git.git (push)
 
 git fetch [remote-name]
 
+---------------------
+
 推送数据到远程仓库
 
 git push [remote-name] [branch-name]
 
+---------------------
+
 查看远程仓库信息
 
 git remote show [remote-name]
+
+----------------------
 
 远程仓库的删除和重命名
 
@@ -148,6 +154,89 @@ git remote rename [old_name] [new_name]
 git remote rm [remote-name]
 
 ================================
+
+打标签
+
+git tag		(显已有的标签)
+
+------------------
+
+新建标签
+Git 使用的标签有两种类型：轻量级的（lightweight）和含附注的（annotated）。
+
+---------------------
+
+含附注的标签
+
+git tag -a [tag-name]
+例子:
+git tag -a v1.0		(Git 会启动vim文本编辑软件供你输入标签说明)
+
+----------------------
+
+显示标签具体信息
+
+git show [tag-name]
+例子:
+git show v1.0
+
+------------------
+
+签署标签
+
+如果你有自己的私钥，还可以用 GPG 来签署标签，只需要把之前的 -a 改为 -s （译注： 取 signed 的首字母）即可：
+$ git tag -s v1.5 -m 'my signed 1.5 tag'
+You need a passphrase to unlock the secret key for
+user: "Scott Chacon <schacon@gee-mail.com>"
+1024-bit DSA key, ID F721C45A, created 2009-02-09
+
+--------------------
+
+轻量级标签
+要创建这样的标签，一个 -a，-s 或 -m 选项都不用，直接给出标签名字即可：
+
+例子:
+git tag v1.0
+
+----------------------
+
+验证标签
+
+git tag -v [tag-name]
+
+可以使用 git tag -v [tag-name] （译注：取 verify 的首字母）的方式验证已经签署的标签。此命令会调用 GPG 来验证签名，所以你需要有签署者的公钥，存放在 keyring 中，才能验证：
+
+-----------------------
+
+后期加注标签
+
+可以在后期对早先的某次提交加注标签。比如在下面展示的提交历史中：
+$ git log --pretty=oneline
+omit...
+166ae0c4d3f420721acbb115cc33848dfcc2121a started write support
+9fceb02d0ae598e95dc970b74767f19372d61af8 updated rakefile
+964f16d36dfccde844893cac5b347e7b3d44abbc commit the todo
+omit...
+
+我们忘了在提交 “updated rakefile” 后为此项目打上版本号 v1.2，没关系，现在也能做。只要在打标签的时候跟上对应提交对象的校验和（或前几位字符 commit id）即可：
+
+$ git tag -a v1.1 9fceb02
+
+--------------------------
+
+分享标签
+
+默认情况下，git push 并不会把标签传送到远端服务器上，只有通过显式命令才能分享标签到远端仓库。其命令格式如同推送分支，运行 
+git push origin [tagname]
+
+推送本地新增的标签，使用--tags
+
+git push origin --tags
+
+===========================
+
+
+
 
 
 
