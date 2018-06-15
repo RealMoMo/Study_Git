@@ -351,4 +351,8 @@ git push [远程名] :[分支名]
 例子:
 git push origin :dev
 
+===============================
 
+分支的变基
+
+git rebase
