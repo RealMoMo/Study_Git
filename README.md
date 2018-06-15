@@ -323,3 +323,32 @@ git branch -D [branch name]
 
 ==============================  
 
+远程分支
+
+
+查看所有远程分支
+
+git branch -a 
+
+--------------------------------
+
+推送本地分支
+
+git push [远程仓库名] [分支名]
+git push [origin] [分支名]:[新远程分支名]  (改名推送到远程分支名)
+
+例子:
+git push origin remotebranch
+or
+git push origin remotebranch:dev
+
+---------------------------------
+
+删除远程分支
+
+git push [远程名] :[分支名]
+
+例子:
+git push origin :dev
+
+
