@@ -356,3 +356,93 @@ git push origin :dev
 分支的变基[学习链接](https://git-scm.com/book/zh/v1/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%9A%84%E5%8F%98%E5%9F%BA)
 
 git rebase
+
+===============================
+
+Git工具-修订版本选择
+
+分支引用
+指明一次提交的最直接的方法要求有一个指向它的分支引用。
+如果你想要显示一个分支的最后一次提交的对象，例如假设 master 分支指向 ca82a6d，那么下面的命令是等价的：
+
+git show [last commit id] == git show [branch name]
+
+$ git show ca82a6dff817ec66f44342007202690a93763949
+$ git show master
+
+
+git rev-parse [branch name]
+
+如果你想知道某个分支指向哪个特定的 SHA，或者想看任何一个例子中被简写的 SHA-1，你可以使用一个叫做 rev-parse 的 Git 探测工具。简单来说，rev-parse 是为了底层操作而不是日常操作设计的。不过，有时你想看 Git 现在到底处于什么状态时，它可能会很有用。这里你可以对你的分支运执行 rev-parse。
+
+$ git rev-parse master
+ca82a6dff817ec66f44342007202690a93763949
+
+-----------------------------------
+
+引用日志里的简称
+
+查看引用日志(一份记录最近几个月你的 HEAD 和分支引用的日志。)
+git reflog
+
+例子:
+git reflog
+1a95aa1 HEAD@{0}: checkout: moving from remotebranch to master
+1a95aa1 HEAD@{1}: checkout: moving from master to remotebranch
+1a95aa1 HEAD@{2}: pull origin master: Fast-forward
+3eaba28 HEAD@{3}: commit: [feature]add how to manger branch
+f00db4f HEAD@{4}: commit: [feature]add simple about branch create and merge
+93d3b8e HEAD@{5}: commit (merge): Merge branch 'learn_branch'
+f81260b HEAD@{6}: checkout: moving from learn_branch to master
+
+-----------------------------
+
+如果你想查看仓库中 HEAD 在n次前的值，你可以使用引用日志的输出中的 @{n} 引用：
+
+例子:
+$ git reflog @{5}
+935fded refs/heads/master@{5}: pull origin master: Fast-forward
+b774f95 refs/heads/master@{6}: commit: [feature]add git log command using
+3f54911 refs/heads/master@{7}: commit: [feature]update git diff command chinese instructions
+4a7840f refs/heads/master@{8}: commit: [feature]add git mv command info
+0178235 refs/heads/master@{9}: commit: [feature]delete test.txt file using git rm command
+
+------------------------
+
+查看特定引用日志
+git show HEAD@{n}
+
+例子:
+git show HEAD@{5}
+
+commit 93d3b8ee762149d859dedc65f8e6e8361578982f
+Merge: f81260b 4375bc3
+Author: Real Mo <czb166@qq.com>
+Date:   Thu Jun 14 20:07:04 2018 +0800
+
+    Merge branch 'learn_branch'
+    merge hotfix branch and learnbranch to test1.txt
+
+diff --cc test1.txt
+index e26b30c,8a52546..54ce729
+--- a/test1.txt
++++ b/test1.txt
+@@@ -1,1 -1,4 +1,7 @@@
+- add test into branch hotfix
+ -add new branch in learnbranch
++
+++add test into branch hotfix
+++
+++add new branch in learnbranch
++
++ finish this problem in branch learnbranch
+++
+
+----------------------------
+
+想要看类似于 git log 输出格式的引用日志信息，你可以运行 
+git log -g
+
+----------------------------
+
+
