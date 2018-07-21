@@ -536,5 +536,23 @@ stash@{0}: WIP on master: c15bbc2 [feature]add git stash command using
 stash@{1}: WIP on master: 7f5395d [feature]add git Revision knowledge
 stash@{2}: WIP on master: 7f5395d [feature]add git Revision knowledge
 
+-----------------
+
+取消储藏(realmo 不太理解实际例子)
+
+在某些情况下，你可能想应用储藏的修改，在进行了一些其他的修改后，又要取消之前所应用储藏的修改。Git没有提供类似于 stash unapply 的命令，但是可以通过取消该储藏的补丁达到同样的效果：
+
+$ git stash show -p stash@{0} | git apply -R
+同样的，如果你沒有指定具体的某个储藏，Git 会选择最近的储藏：
+
+$ git stash show -p | git apply -R
+你可能会想要新建一个別名，在你的 Git 里增加一个 stash-unapply 命令，这样更有效率。例如：
+
+$ git config --global alias.stash-unapply '!git stash show -p | git apply -R'
+$ git stash apply
+$ #... work work work
+$ git stash-unapply
+
+
 
 
