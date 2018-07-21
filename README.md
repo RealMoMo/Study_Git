@@ -506,3 +506,35 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 
 
+你可以看到 Git 重新修改了你所储藏的那些当时尚未提交的文件。在这个案例里，你尝试应用储藏的工作目录是干净的，并且属于同一分支；但是一个干净的工作目录和应用到相同的分支上并不是应用储藏的必要条件。你可以在其中一个分支上保留一份储藏，随后切换到另外一个分支，再重新应用这些变更。在工作目录里包含已修改和未提交的文件时，你也可以应用储藏——Git 会给出归并冲突如果有任何变更无法干净地被应用。
+
+
+
+git stash pop 
+重新应用储藏，并同时在git stash list立刻移走
+
+
+apply选项只尝试应用储藏的工作——储藏的内容仍然在栈上。要移除它，你可以运行 git stash drop，加上你希望移除的储藏的名字。
+git stash drop +stash[name]
+
+
+
+例子：
+λ git stash list
+stash@{0}: WIP on master: c15bbc2 [feature]add git stash command using
+stash@{1}: WIP on master: 7f5395d [feature]add git Revision knowledge
+stash@{2}: WIP on master: 7f5395d [feature]add git Revision knowledge
+stash@{3}: WIP on master: 7f5395d [feature]add git Revision knowledge
+
+
+λ git stash drop stash@{1}
+Dropped stash@{1} (3fcbf43f5288dfcf98c7dbb141d3399c6a4a857d)
+
+
+λ git stash list
+stash@{0}: WIP on master: c15bbc2 [feature]add git stash command using
+stash@{1}: WIP on master: 7f5395d [feature]add git Revision knowledge
+stash@{2}: WIP on master: 7f5395d [feature]add git Revision knowledge
+
+
+
