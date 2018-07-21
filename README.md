@@ -553,6 +553,31 @@ $ git stash apply
 $ #... work work work
 $ git stash-unapply
 
+--------------------
+
+从储藏中创建分支
+
+git stash branch
+如果你储藏了一些工作，暂时不去理会，然后继续在你储藏工作的分支上工作，你在重新应用工作时可能会碰到一些问题。如果尝试应用的变更是针对一个你那之后修改过的文件，你会碰到一个归并冲突并且必须去化解它。如果你想用更方便的方法来重新检验你储藏的变更，你可以运行 git stash branch，这会创建一个新的分支，检出你储藏工作时的所处的提交，重新应用你的工作，如果成功，将会丢弃储藏。
+
+$ git stash branch testchanges
+Switched to a new branch "testchanges"
+# On branch testchanges
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#      modified:   index.html
+#
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#
+#      modified:   lib/simplegit.rb
+#
+Dropped refs/stash@{0} (f0dfc4d5dc332d1cee34a634182e168c4efc3359)
+这是一个很棒的捷径来恢复储藏的工作然后在新的分支上继续当时的工作。
+
+
+
 
 
 
