@@ -445,4 +445,64 @@ git log -g
 
 ----------------------------
 
+git diff --check
+提交之前，会把可能的多余白字符修正列出来
+
+=============================
+
+git 工具
+
+储藏
+
+git stash
+“‘储藏”“可以获取你工作目录的中间状态——也就是你修改过的被追踪的文件和暂存的变更——并将它保存到一个未完结变更的堆栈中，随时可以重新应用。
+
+git stash list
+查看现有的储藏
+
+git stash apply
+重新应用最新一次实施的储藏
+
+git stash apply stash@{2}
+指明应用的储藏，通过名字指定。如果你不指明，Git 默认使用最近的储藏并尝试应用它
+
+
+
+例子：
+
+1.查看项目状态
+λ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+  
+2.暂存
+λ git stash
+Saved working directory and index state WIP on master: 7f5395d [feature]add git Revision knowledge
+HEAD is now at 7f5395d [feature]add git Revision knowledge
+  
+3.再查看项目状态
+λ git status
+On branch master
+nothing to commit, working tree clean
+
+4.查看现有的储藏
+λ git stash list
+stash@{0}: WIP on master: 7f5395d [feature]add git Revision knowledge
+stash@{1}: WIP on master: 7f5395d [feature]add git Revision knowledge
+stash@{2}: WIP on master: 7f5395d [feature]add git Revision knowledge
+
+5.恢复
+λ git stash apply
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+
 
