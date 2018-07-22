@@ -617,9 +617,31 @@ git blame -C +[file name]
 会在你的提交历史中进行二分查找来尽快地确定哪一次提交引入了错误。
 git bisect
 
+例子：
+例如你刚刚推送了一个代码发布版本到产品环境中，对代码为什么会表现成那样百思不得其解。你回到你的代码中，还好你可以重现那个问题，但是找不到在哪里。你可以对代码执行bisect来寻找。首先你运行git bisect start启动，然后你用git bisect bad来告诉系统当前的提交已经有问题了。然后你必须告诉bisect已知的最后一次正常状态是哪次提交，使用git bisect good [good_commit]：
 
+$ git bisect start
+$ git bisect bad
+$ git bisect good v1.0
+Bisecting: 6 revisions left to test after this
+[ecb6e1bc347ccecc5f9350d878ce677feb13d3b2] error handling on repo
 
+假设这里是没有错误的，那么你就通过git bisect good来告诉 Git 然后继续你的旅程：
+$ git bisect good
+Bisecting: 3 revisions left to test after this
+[b047b02ea83310a70fd603dc8cd7a6cd13d15c04] secure this thing
 
+你再次运行测试然后发现这次提交是错误的，因此你通过git bisect bad来告诉Git：
 
+$ git bisect bad
+Bisecting: 1 revisions left to test after this
+[f71ce38690acf49c1f3c9bea38e09d82a5ce6014] drop exceptions table
+
+当你完成之后，你应该运行
+git bisect reset来重设你的HEAD到你开始前的地方，否则你会处于一个诡异的地方：
+
+$ git bisect reset
+
+==============================
 
 
