@@ -650,4 +650,30 @@ $ git bisect reset
 
 自定义Git
 
+客户端基本配置(看git book)
+
+-----------------------------
+
+Git中的着色
+
+设置color.ui为true来打开所有的默认终端着色。
+$ git config --global color.ui true
+
+其他的参数还有false和always，false意味着不为输出着色，而always则表明在任何情况下都要着色，即使 Git 命令被重定向到文件或管道。
+
+想要具体到哪些命令输出需要被着色以及怎样着色或者 Git 的版本很老，你就要用到和具体命令有关的颜色配置选项，它们都能被置为true、false或always：
+color.branch
+color.diff
+color.interactive
+color.status
+
+除此之外，以上每个选项都有子选项，可以被用来覆盖其父设置，以达到为输出的各个部分着色的目的。例如，让diff输出的改变信息以粗体、蓝色前景和黑色背景的形式显示：
+
+$ git config --global color.diff.meta "blue black bold"
+你能设置的颜色值如：normal、black、red、green、yellow、blue、magenta、cyan、white，正如以上例子设置的粗体属性，想要设置字体属性的话，可以选择如：bold、dim、ul、blink、reverse。
+
+-------------------------------
+
+
+
 
