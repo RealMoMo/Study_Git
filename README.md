@@ -674,6 +674,67 @@ $ git config --global color.diff.meta "blue black bold"
 
 -------------------------------
 
+外部的合并与比较工具
+
+软件: P4Merge
+
+------------------------------
+
+格式化与空白
+
+core.autocrlf
+假如你正在Windows上写程序，又或者你正在和其他人合作，他们在Windows上编程，而你却在其他系统上，在这些情况下，你可能会遇到行尾结束符问题。这是因为Windows使用回车和换行两个字符来结束一行，而Mac和Linux只使用换行一个字符。虽然这是小问题，但它会极大地扰乱跨平台协作。
+
+Git可以在你提交时自动地把行结束符CRLF转换成LF，而在签出代码时把LF转换成CRLF。用core.autocrlf来打开此项功能，如果是在Windows系统上，把它设置成true，这样当签出代码时，LF会被转换成CRLF：
+$ git config --global core.autocrlf true
+
+Linux或Mac系统使用LF作为行结束符，因此你不想 Git 在签出文件时进行自动的转换；当一个以CRLF为行结束符的文件不小心被引入时你肯定想进行修正，把core.autocrlf设置成input来告诉 Git 在提交时把CRLF转换成LF，签出时不转换：
+$ git config --global core.autocrlf input
+这样会在Windows系统上的签出文件中保留CRLF，会在Mac和Linux系统上，包括仓库中保留LF。
+
+如果你是Windows程序员，且正在开发仅运行在Windows上的项目，可以设置false取消此功能，把回车符记录在库中：
+$ git config --global core.autocrlf false
+
+
+
+Git预先设置了一些选项来探测和修正空白问题，其4种主要选项中的2个默认被打开，另2个被关闭，你可以自由地打开或关闭它们。
+
+默认被打开的2个选项是trailing-space和space-before-tab，trailing-space会查找每行结尾的空格，space-before-tab会查找每行开头的制表符前的空格。
+
+默认被关闭的2个选项是indent-with-non-tab和cr-at-eol，indent-with-non-tab会查找8个以上空格（非制表符）开头的行，cr-at-eol让 Git 知道行尾回车符是合法的。
+
+设置core.whitespace，按照你的意图来打开或关闭选项，选项以逗号分割。通过逗号分割的链中去掉选项或在选项前加-来关闭，例如，如果你想要打开除了cr-at-eol之外的所有选项：
+
+$ git config --global core.whitespace \
+    trailing-space,space-before-tab,indent-with-non-tab
+当你运行git diff命令且为输出着色时，Git 探测到这些问题，因此你也许在提交前能修复它们，当你用git apply打补丁时同样也会从中受益。如果正准备运用的补丁有特别的空白问题，你可以让 Git 发警告：
+
+$ git apply --whitespace=warn <patch>
+或者让 Git 在打上补丁前自动修正此问题：
+
+$ git apply --whitespace=fix <patch>
+这些选项也能运用于衍合。如果提交了有空白问题的文件但还没推送到上游，你可以运行带有--whitespace=fix选项的rebase来让Git在重写补丁时自动修正它们。
+
+----------------------------
+
+服务器端配置(看git book)
+
+=============================
+
+Git属性(看git book)
+
+有例子如何对word文档进行对比
+
+=============================
+
+Git挂钩&Git强制策略实例(看git book)
+
+=============================
+
+
+
+
+
 
 
 
