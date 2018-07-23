@@ -735,10 +735,21 @@ Last Chapter
 GIt内部原理
 
 
+.git\ 文件夹内容
+
+D:\Documents\GitHub\Study_Git\.git (master)
+λ ls
+COMMIT_EDITMSG  HEAD       config       hooks/  info/  objects/
+FETCH_HEAD      ORIG_HEAD  description  index   logs/  refs/
+
+onfig 文件包含了项目特有的配置选项，info 目录保存了一份不希望在 .gitignore 文件中管理的忽略模式 (ignored patterns) 的全局可执行文件。hooks 目录保存了第七章详细介绍了的客户端或服务端钩子脚本。
+
+另外还有四个重要的文件或目录：HEAD 及 index 文件，objects 及 refs 目录。这些是 Git 的核心部分。objects 目录存储所有数据内容，refs 目录存储指向数据 (分支) 的提交对象的指针，HEAD 文件指向当前分支，index 文件保存了暂存区域信息。
 
 
+=============================
 
-
+该章节其余内容(看git book)
 
 
 
